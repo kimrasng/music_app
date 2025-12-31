@@ -1,0 +1,51 @@
+package kr.kimrasng.app.music_player
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import kr.kimrasng.app.music_player.data.Api
+import kr.kimrasng.app.music_player.ui.theme.Music_playerTheme
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            Music_playerTheme {
+                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    MusicApp(
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun MusicApp() {
+    var text by remember { mutableStateOf("Loading...") }
+
+    LaunchedEffect(Unit) {
+        try {
+            val json = Api()
+            text = json.getSongJson()
+        } catch (e: Exception) {
+            text = "Error: ${e.message}"
+        }
+    }
+
+    Text(text = text)
+}
