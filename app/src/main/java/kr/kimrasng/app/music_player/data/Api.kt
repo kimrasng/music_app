@@ -5,10 +5,13 @@ import kotlinx.coroutines.withContext
 import java.net.URL
 
 class Api {
-    private val SONG_URL= "https://api.kimrasng.kr/api/music-server/songs"
+    private val url= "https://api.kimrasng.kr/api/music-server/"
 
     suspend fun getSongJson(): String = withContext(Dispatchers.IO) {
-        URL(SONG_URL).readText()
+        URL(url+"songs").readText()
+    }
+    suspend fun getArtistJson(): String = withContext(Dispatchers.IO) {
+        URL(url+"artists").readText()
     }
 
     companion object

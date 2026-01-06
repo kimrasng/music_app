@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import kr.kimrasng.app.music_player.data.Api
 import kr.kimrasng.app.music_player.ui.theme.Music_playerTheme
+import kr.kimrasng.app.music_player.ui.screen.*
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,16 +37,8 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MusicApp() {
-    var text by remember { mutableStateOf("Loading...") }
+    MusicInfo()
+    PlayList()
+    PlayBar()
 
-    LaunchedEffect(Unit) {
-        try {
-            val json = Api()
-            text = json.getSongJson()
-        } catch (e: Exception) {
-            text = "Error: ${e.message}"
-        }
-    }
-
-    Text(text = text)
 }
