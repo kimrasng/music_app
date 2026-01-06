@@ -2,7 +2,6 @@ package kr.kimrasng.app.music_player.data
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import java.time.LocalDate
 
 @Serializable
 data class SongsResponse(
@@ -18,7 +17,7 @@ data class SongDto(
     @SerialName("artist_name") val artistName: String,
     @SerialName("filename") val filename: String,
     @SerialName("image_filename") val imageFilename: String,
-    @SerialName("release_date") val releaseDate: LocalDate,
+    @SerialName("release_date") val releaseDate: String,
     @SerialName("artist_id") val artistId: Int,
     @SerialName("album_id") val albumId: Int
 )
@@ -33,6 +32,6 @@ data class ArtistDto(
     val id: Int,
     @SerialName("korean_name") val koreanName: String,
     @SerialName("foreign_name") val foreignName: String,
-    @SerialName("debut_date") val debutDate: LocalDate,
+    @SerialName("debut_date") val debutDate: String,
     @SerialName("image_filename") val imageFilename: String
 )

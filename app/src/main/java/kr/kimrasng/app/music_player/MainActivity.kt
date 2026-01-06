@@ -27,8 +27,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             Music_playerTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    MusicApp(
-                    )
+                    MusicApp()
                 }
             }
         }
