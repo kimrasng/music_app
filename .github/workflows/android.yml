@@ -9,10 +9,11 @@ permissions:
 
 jobs:
   build:
+    name: Build APK
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Set up JDK 17
@@ -28,13 +29,37 @@ jobs:
       - name: Build Release APK
         run: ./gradlew assembleRelease
 
-      - name: Upload APK to GitHub Releases
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-apk
+          path: app/build/outputs/apk/release/app-release.apk
+
+
+  release:
+    name: Create GitHub Release
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download APK artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: release-apk
+
+      - name: Get app version
+        id: version
+        run: |
+          VERSION_NAME=$(grep versionName app/build.gradle.kts | sed 's/.*"\(.*\)".*/\1/')
+          echo "version=$VERSION_NAME" >> $GITHUB_OUTPUT
+
+      - name: Publish Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: build-${{ github.run_number }}
-          name: Build ${{ github.run_number }}
+          tag_name: v${{ steps.version.outputs.version }}-${{ github.run_number }}
+          name: v${{ steps.version.outputs.version }} (Build ${{ github.run_number }})
           body: |
-            자동 빌드된 Android Release APK입니다.
-            Commit: ${{ github.sha }}
+            Version: v${{ steps.version.outputs.version }}
+            Build: #${{ github.run_number }}
           files: |
-            app/build/outputs/apk/release/app-release.apk
+            app-release.apk
