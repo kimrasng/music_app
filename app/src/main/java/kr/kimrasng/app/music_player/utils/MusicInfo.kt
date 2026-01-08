@@ -30,7 +30,7 @@ fun MusicInfo(
         WebpImageFromUrl(
             url = song.imageFilename,
             contentScale = ContentScale.Crop,
-            alignment = Alignment.Center, // Added this line
+            alignment = Alignment.Center,
             modifier = Modifier
                 .size(250.dp)
                 .clip(RoundedCornerShape(16.dp))
