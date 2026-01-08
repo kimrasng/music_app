@@ -11,7 +11,7 @@
 **다운로드 링크:** [https://github.com/kimrasng/music_app/releases](https://github.com/kimrasng/music_app/releases)
 
 - 각 릴리즈에는 `app-release.apk` 파일이 첨부되어 있습니다
-- 최신 릴리즈: [build-6](https://github.com/kimrasng/music_app/releases/tag/build-6)
+- 가장 최신 릴리즈를 클릭하여 상세 정보를 확인하세요
 - 릴리즈 페이지의 "Assets" 섹션에서 APK 파일을 다운로드할 수 있습니다
 
 ### 2. GitHub Actions Artifacts에서 다운로드

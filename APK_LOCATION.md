@@ -11,7 +11,7 @@ The latest built APK files are available on the GitHub Releases page:
 **Download Link:** [https://github.com/kimrasng/music_app/releases](https://github.com/kimrasng/music_app/releases)
 
 - Each release includes an `app-release.apk` file
-- Latest release: [build-6](https://github.com/kimrasng/music_app/releases/tag/build-6)
+- Click on the latest release to view details
 - Download the APK file from the "Assets" section of the release page
 
 ### 2. Download from GitHub Actions Artifacts
