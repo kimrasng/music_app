@@ -1,8 +1,8 @@
-package kr.kimrasng.app.music_player.ui.screen
+package kr.kimrasng.app.music_player.utils
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
@@ -23,34 +23,34 @@ fun MusicInfo(
     song: SongDto,
     modifier: Modifier = Modifier
 ) {
-    Row(
+    Column(
         modifier = modifier,
-        verticalAlignment = Alignment.CenterVertically
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         WebpImageFromUrl(
             url = song.imageFilename,
             contentScale = ContentScale.Crop,
-            alignment = Alignment.Center,
+            alignment = Alignment.Center, // Added this line
             modifier = Modifier
-                .size(70.dp)
-                .clip(RoundedCornerShape(5.dp))
+                .size(250.dp)
+                .clip(RoundedCornerShape(16.dp))
         )
-        Column(
-            modifier = Modifier
-                .padding(start = 16.dp)
-        ) {
-            Text(
-                text = song.foreignTitle,
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.onBackground
-            )
 
-            Text(
-                text = song.artistName,
-                fontSize = 14.sp,
-                color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f)
-            )
-        }
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Text(
+            text = song.foreignTitle,
+            fontSize = 24.sp,
+            fontWeight = FontWeight.Bold,
+            color = MaterialTheme.colorScheme.onBackground
+        )
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        Text(
+            text = song.artistName,
+            fontSize = 18.sp,
+            color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f)
+        )
     }
 }

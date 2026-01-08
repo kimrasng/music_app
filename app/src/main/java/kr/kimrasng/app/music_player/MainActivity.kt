@@ -7,18 +7,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import kr.kimrasng.app.music_player.data.Api
+import kr.kimrasng.app.music_player.ui.screen.MainScreen
 import kr.kimrasng.app.music_player.ui.theme.Music_playerTheme
-import kr.kimrasng.app.music_player.ui.screen.*
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,17 +18,9 @@ class MainActivity : ComponentActivity() {
         setContent {
             Music_playerTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    MusicApp()
+                    MainScreen(modifier = Modifier.padding(innerPadding))
                 }
             }
         }
     }
-}
-
-@Composable
-fun MusicApp() {
-    MusicInfo()
-    PlayList()
-    PlayBar()
-
 }
