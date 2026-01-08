@@ -18,7 +18,7 @@ Android 음악 재생 애플리케이션
 - **Language:** Kotlin
 - **Build Tool:** Gradle
 - **JDK:** 17
-- **Android SDK:** Target SDK 34
+- **Android SDK:** Target SDK 36, Min SDK 24
 
 ## 🔨 빌드 방법
 
