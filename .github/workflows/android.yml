@@ -33,11 +33,14 @@ jobs:
       - name: Build Release APK
         run: ./gradlew assembleRelease
 
+      - name: List Release APK files
+        run: ls -l app/build/outputs/apk/release
+
       - name: Upload Release APK artifact
         uses: actions/upload-artifact@v4
         with:
           name: release-apk
-          path: app/build/outputs/apk/release/app-release.apk
+          path: app/build/outputs/apk/release/
 
   release:
     name: Create GitHub Release
@@ -46,18 +49,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Download Release APK
+      - name: Download Release APK artifact
         uses: actions/download-artifact@v4
         with:
           name: release-apk
           path: ./artifact
 
-      - name: Rename APK
-        run: mv ./artifact/app-release.apk ./music_app-release.apk
+      - name: List downloaded artifacts
+        run: ls -l ./artifact
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: music_app-release.apk
+          files: ./artifact/**/*.apk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
